@@ -13,7 +13,7 @@ module.exports = function() {
     })
     client.on('response', (response) => {
       // console.log(`STATUS: ${response.statusCode}`)
-      // console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
+      console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
       response.on('data', (chunk) => {
         // console.log(`BODY: ${chunk}`)
         body += chunk

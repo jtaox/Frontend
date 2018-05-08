@@ -1,7 +1,8 @@
 const {
   app,
   BrowserWindow,
-  Menu
+  Menu,
+  MenuItem
 } = require('electron')
 const path = require('path')
 const url = require('url')
@@ -21,7 +22,9 @@ function createWindow() {
     // 无边框
     // frame: false 
   })
-
+  // 透明度
+  win.setOpacity(0.9)
+  win.setSkipTaskbar(true)
   // 菜单
   const template = [
     {
@@ -71,8 +74,13 @@ function createWindow() {
   ]
 
   const menu = Menu.buildFromTemplate(template)
+  menu.append(new MenuItem({label: '返回上一页', click() { 
+      BrowserWindow.getFocusedWindow().webContents.goBack()
+   }}))
   Menu.setApplicationMenu(menu)
-
+  win.webContents.on('context-menu', function(e) {
+    menu.popup(win)
+  })
   // 然后加载应用的 index.html。
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
