@@ -1,6 +1,6 @@
 const { ipcRenderer } = require('electron')
 const remote = require('electron').remote
-const { Notification, Menu, MenuItem, net, BrowserWindow } = remote
+const { Notification, Menu, MenuItem, net, BrowserWindow, dialog } = remote
 
 // const menu = new Menu()
 // menu.append(new MenuItem({label: '右键菜单', click() { console.log('item 1 clicked') }}))
@@ -45,7 +45,20 @@ new Vue({
 function openNewWindow() {
 
 }
+document.getElementById('openDialog').onclick = showOpenDialog
 
+function showMessageBox() {
+  console.log('open dialog', dialog)
+  dialog.showMessageBox({
+    title: 'hello对话框',
+  })
+}
+
+function showOpenDialog() {
+  dialog.showOpenDialog({
+    properties: ['openFile']
+  })
+}
 
 
 

@@ -10,7 +10,8 @@
 <body>
   <div>可点击右键返回上一页</div>
   <button id="sendNotification">发送一个通知</button>
-  <button id="openNewWindow" onclick="openNewWindow">打开新窗口</button>
+  <button id="openNewWindow">打开新窗口</button>
+  <button id="openDialog">打开对话框</button>
   <div id="app">
     <button @click="request">获取数据</button>
     <ul><li v-for="item in list"><a :href="item.url">{{ item.title }}</a></li></ul>
