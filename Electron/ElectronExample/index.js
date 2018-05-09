@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, clipboard } = require('electron')
 const remote = require('electron').remote
 const { Notification, Menu, MenuItem, net, BrowserWindow, dialog } = remote
 
@@ -14,7 +14,6 @@ const { Notification, Menu, MenuItem, net, BrowserWindow, dialog } = remote
 //   e.preventDefault()
 //   menu.popup(remote.getCurrentWindow())
 // }, false)
-
 
 document.querySelector('#sendNotification').onclick = sendNotification
 
@@ -56,11 +55,20 @@ function showMessageBox() {
 
 function showOpenDialog() {
   dialog.showOpenDialog({
+    // 数组类型
     properties: ['openFile']
+  }, function(filePaths) {
+    console.log(filePaths)
   })
 }
 
+document.getElementById('writeclipboard').onclick = function() {
+  clipboard.writeText('来自clipboard.writeText的操作', 'test')
+}
 
+document.getElementById('readclipboard').onclick = function() {
+  console.log(clipboard.readText())
+}
 
 // const client = net.request({
 //   method: 'GET',
