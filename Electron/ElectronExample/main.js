@@ -22,9 +22,15 @@ function createWindow() {
     // 无边框
     // frame: false 
   })
+  // 必须在ready事件触发以后引入
+  const { powerMonitor } = require('electron')
+  // 交流电触发
+  powerMonitor.on('on-ac', () => {
+    console.log('充电连接')
+  })
   // 透明度
   win.setOpacity(0.9)
-  win.setSkipTaskbar(true)
+  // win.setSkipTaskbar(true)
   // 菜单
   const template = [
     {
@@ -72,7 +78,7 @@ function createWindow() {
       ]
     }
   ]
-
+  
   const menu = Menu.buildFromTemplate(template)
   menu.append(new MenuItem({label: '返回上一页', click() { 
       BrowserWindow.getFocusedWindow().webContents.goBack()

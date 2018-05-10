@@ -1,6 +1,8 @@
 const { ipcRenderer, clipboard } = require('electron')
 const remote = require('electron').remote
 const { Notification, Menu, MenuItem, net, BrowserWindow, dialog } = remote
+const url = require('url')
+const path = require('path')
 
 // const menu = new Menu()
 // menu.append(new MenuItem({label: '右键菜单', click() { console.log('item 1 clicked') }}))
@@ -68,6 +70,18 @@ document.getElementById('writeclipboard').onclick = function() {
 
 document.getElementById('readclipboard').onclick = function() {
   console.log(clipboard.readText())
+}
+
+document.getElementById('openDragWin').onclick = function() {
+  let child = new BrowserWindow({
+    parent: BrowserWindow.getFocusedWindow(),
+  })
+  child.loadURL(url.format({
+    pathname: path.join(__dirname, 'drag.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+  child.show()
 }
 
 // const client = net.request({
