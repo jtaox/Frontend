@@ -72,6 +72,18 @@ document.getElementById('readclipboard').onclick = function() {
   console.log(clipboard.readText())
 }
 
+document.getElementById('capturerWin').onclick = function() {
+  let child = new BrowserWindow({
+    parent: BrowserWindow.getFocusedWindow(),
+  })
+  child.loadURL(url.format({
+    pathname: path.join(__dirname, './capturer/index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+  child.show()
+}
+
 document.getElementById('openDragWin').onclick = function() {
   let child = new BrowserWindow({
     parent: BrowserWindow.getFocusedWindow(),
