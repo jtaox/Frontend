@@ -2,7 +2,8 @@ const {
   app,
   BrowserWindow,
   Menu,
-  MenuItem
+  MenuItem,
+  Tray
 } = require('electron')
 const path = require('path')
 const url = require('url')
@@ -30,7 +31,7 @@ function createWindow() {
   })
   // 透明度
   win.setOpacity(0.9)
-  // win.setSkipTaskbar(true)
+  win.setSkipTaskbar(true)
   // 菜单
   const template = [
     {
@@ -94,6 +95,19 @@ function createWindow() {
     slashes: true
   }))
 
+  tray = new Tray('./images/icon.ico')
+  const contextMenu = Menu.buildFromTemplate([
+    {label: 'Item1', type: 'radio'},
+    {label: 'Item2', type: 'radio'},
+    {label: 'Item3', type: 'radio', checked: true},
+    {label: 'Item4', type: 'radio'}
+  ])
+  tray.setToolTip('This is my application.')
+  tray.setContextMenu(contextMenu)
+  tray.on('click', function() {
+    console.log('click icon')
+  })
+
   // 网络
   // request()
 
@@ -105,7 +119,7 @@ function createWindow() {
     // 取消引用 window 对象，如果你的应用支持多窗口的话，
     // 通常会把多个 window 对象存放在一个数组里面，
     // 与此同时，你应该删除相应的元素。
-    win = null
+    // win = null
   })
 }
 
