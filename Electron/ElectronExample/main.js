@@ -95,17 +95,30 @@ function createWindow() {
     slashes: true
   }))
 
+  win.on('close', function(e) {
+    // 阻止关闭
+    e.preventDefault()
+    // 最小化
+    win.minimize()
+    e.returnValue = true
+  })
+
   tray = new Tray('./images/icon.ico')
   const contextMenu = Menu.buildFromTemplate([
     {label: 'Item1', type: 'radio'},
     {label: 'Item2', type: 'radio'},
     {label: 'Item3', type: 'radio', checked: true},
-    {label: 'Item4', type: 'radio'}
+    {label: 'Item4', type: 'radio'},
+    {label: '退出', click: function() {
+      // 强制关闭窗口
+      win.destroy()
+    }}
   ])
   tray.setToolTip('This is my application.')
   tray.setContextMenu(contextMenu)
   tray.on('click', function() {
-    console.log('click icon')
+    // 恢复
+    win.restore()
   })
 
   // 网络
@@ -119,7 +132,7 @@ function createWindow() {
     // 取消引用 window 对象，如果你的应用支持多窗口的话，
     // 通常会把多个 window 对象存放在一个数组里面，
     // 与此同时，你应该删除相应的元素。
-    // win = null
+    win = null
   })
 }
 
