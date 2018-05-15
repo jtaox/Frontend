@@ -102,6 +102,9 @@ function createWindow() {
     win.minimize()
     e.returnValue = true
   })
+  // const shell = require('electron')
+  // const res = shell.readShortcutLink('C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
+  // console.log(res)
 
   tray = new Tray('./images/icon.ico')
   const contextMenu = Menu.buildFromTemplate([

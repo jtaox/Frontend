@@ -1,4 +1,4 @@
-const { ipcRenderer, clipboard } = require('electron')
+const { ipcRenderer, clipboard, shell } = require('electron')
 const remote = require('electron').remote
 const { Notification, Menu, MenuItem, net, BrowserWindow, dialog } = remote
 const url = require('url')
@@ -96,6 +96,12 @@ document.getElementById('openDragWin').onclick = function() {
   child.show()
 }
 
+document.getElementById('openBrowser').onclick = function() {
+  shell.openExternal('https://github.com')
+}
+document.getElementById('playSound').onclick = function() {
+  shell.beep()
+}
 // const client = net.request({
 //   method: 'GET',
 //   protocol: 'https:',
