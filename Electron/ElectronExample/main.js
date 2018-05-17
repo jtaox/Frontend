@@ -20,6 +20,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    title: 'Ele'
     // 无边框
     // frame: false 
   })
