@@ -16,4 +16,11 @@ Electron使用[Chromium](https://zh.wikipedia.org/zh/Chromium)展示web页面，
 
 ![img-0](https://raw.githubusercontent.com/jtaox/Frontend/master/Electron/ElectronExample/example/img-0.png)
 
-上面运行在主进程中。创建了BrowserWindow实例，并调用该实例的`loadURL`方法加载html文件。在项目根目录通过`npm start`命令启动程序，便可以看到一个宽度为800，高度为600的窗口，窗口为index.html的渲染结果。创建BrowserWindow对象可以传入一个配置参数，提供了很多[选项](https://electronjs.org/docs/api/browser-window#new-browserwindowoptions)，比如通过x、y字段指定窗口相对屏幕的偏移，通过title字段指定窗口默认标题等等。
+上面代码运行在主进程中，是一个创建窗口的简单例子。创建了BrowserWindow实例，并调用该实例的`loadURL`方法加载html文件。在项目根目录通过`npm start`命令启动程序，便可以看到一个宽度为800，高度为600的窗口，窗口为index.html的渲染结果。创建BrowserWindow对象可以传入一个配置参数，提供了很多[选项](https://electronjs.org/docs/api/browser-window#new-browserwindowoptions)，比如通过x、y字段指定窗口相对屏幕的偏移，通过title字段指定窗口默认标题等等。
+
+上面代码只能运行在主进程，Electron中所有API都会指定进程类型：
+
+![]()
+
+有些API只能在主线程中使用，比如创建和控制窗口的BrowserWindow，有的只能在渲染线程中使用，比如在渲染进程中使用主进程模块的[remote](https://electronjs.org/docs/api/remote#remote)，也有的API既可以在主线程中使用，也可以在渲染进程中使用，比如操作剪切板的clipboar。既然分为主线程和渲染线程，那进程间通信是不可避免的
+
