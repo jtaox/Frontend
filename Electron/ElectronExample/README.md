@@ -14,7 +14,9 @@ Electron使用[Chromium](https://zh.wikipedia.org/zh/Chromium)展示web页面，
 
 主进程通过[BrowserWindow](https://electronjs.org/docs/api/browser-window#browserwindow)类创建页面，每个BrowserWindow实例都在自己的渲染进程里运行，也就是说每个页面都对应一个独立的渲染进程。渲染进程会在窗口中渲染web页面。
 
-![img-0](https://raw.githubusercontent.com/jtaox/Frontend/master/Electron/ElectronExample/example/img-0.png){:height="50%" width="50%"}
+<div align=center>
+  <img src="https://raw.githubusercontent.com/jtaox/Frontend/master/Electron/ElectronExample/example/img-0.png" width="500" />
+</div>
 
 上面代码运行在主进程中，是一个创建窗口的简单例子。创建了BrowserWindow实例，并调用该实例的`loadURL`方法加载html文件。在项目根目录通过`npm start`命令启动程序，便可以看到一个宽度为800，高度为600的窗口，窗口为index.html的渲染结果。创建BrowserWindow对象可以传入一个配置参数，提供了很多[选项](https://electronjs.org/docs/api/browser-window#new-browserwindowoptions)，比如通过x、y字段指定窗口相对屏幕的偏移，通过title字段指定窗口默认标题等等。
 
