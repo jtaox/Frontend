@@ -2,10 +2,10 @@
 // https://en.wikipedia.org/wiki/Quicksort
 function quick_sort(arr) {
   if (arr.length < 2) return arr
-  let pivot = arr[0]
+  let pivot = arr[Math.floor(arr.length / 2)]
   let less = arr.filter(item => item < pivot)
   let greater = arr.filter(item => item > pivot)
-  console.log(pivot, less, greater)
+  console.log(pivot, ',' ,less, ',', greater)
   return [...quick_sort(less), pivot, ...quick_sort(greater)]
 }
 
